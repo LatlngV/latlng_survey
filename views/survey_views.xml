@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <record id="latlng_survey_tree" model="ir.ui.view">
+            <field name="name">latlng.survey.tree</field>
+            <field name="model">latlng.survey</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="title"/>
+                    <field name="survey_page_line"/>
+                </tree>
+            </field>
+        </record>
+        <record id="latlng_survey_tree" model="ir.ui.view">
+            <field name="name">latlng.survey.tree</field>
+            <field name="model">latlng.survey</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <field name="title"/>
+                        <notebook>
+                            <page string="编辑问题">
+                                <field name="survey_page_line">
+                                    <tree>
+                                        <field name="title"/>
+                                        <field name="survey_question_line"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="latlng_survey_page_form" model="ir.ui.view">
+            <field name="name">latlng.survey.page.form</field>
+            <field name="model">latlng.survey.page</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <field name="title" placeholder="网页标题"/>
+                        <notebook>
+                            <page>
+                                <field name="survey_question_line">
+                                    <tree>
+                                        <field name="title"/>
+                                        <field name="limit_score"/>
+                                        <field name="question_type"/>
+                                        <field name="answer_question"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="latlng_survey_question_form" model="ir.ui.view">
+            <field name="name">latlng.survey.question.form</field>
+            <field name="model">latlng.survey.question</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <field name="title"/>
+                        <field name="limit_score"/>
+                        <field name="question_type" widget="radio"/>
+                        <field name="answer_question"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="latlng_survey_action" model="ir.actions.act_window">
+            <field name="name">调查评价</field>
+            <field name="res_model">latlng.survey</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem
+                id="menu_latlng"
+                name="调查评价"
+                sequence="1"/>
+        <menuitem
+                id="menu_latlng_survey"
+                name="调查评价"
+                parent="menu_latlng"
+                action="latlng_survey_action"/>
+
+    </data>
+</odoo>
